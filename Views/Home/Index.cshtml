@@ -1,0 +1,228 @@
+@model IEnumerable<DockerizedCrud.Models.Product>
+
+
+
+<!-- Add New Product Modal -->
+<div class="modal fade" id="productaddmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add New Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body m-5">
+                <div class="m-3 row">
+                    <label class="col-sm-4">Name: </label> <input class="col-sm-6" type="text" id="name"
+                        placeholder="Name" />
+                </div>
+
+                <div class="m-3 row">
+                    <label class="col-sm-4">Category: </label> <input class="col-sm-6" type="text" id="category"
+                        placeholder="Category" />
+
+                </div>
+                <div class="m-3 row">
+                    <label class="col-sm-4">Price: </label><input type="text" class="col-sm-6" id="price"
+                        placeholder="Price" />
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="AddNewProduct()">Save </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Product Modal -->
+<div class="modal fade" id="producteditmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body m-5">
+                <div class="m-3 row">
+                    <label class="col-sm-4">Name: </label> <input class="col-sm-6"  type="text" id="editname"
+                        placeholder="Name" />
+                </div>
+
+                <div class="m-3 row">
+                    <label class="col-sm-4">Category: </label> <input class="col-sm-6" type="text" id="editcategory"
+                        placeholder="Category" />
+
+                </div>
+                <div class="m-3 row">
+                    <label class="col-sm-4">Price: </label><input type="text" class="col-sm-6" id="editprice"
+                        placeholder="Price" />
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="EditProduct()">Save </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete Product Modal -->
+<div class="modal fade" id="productdelmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body m-5">
+                <p>Are you sure you want to proceed with this action?</p>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="DelProduct()">Yes </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="m-1 p-1">
+    <h4 class="bg-primary text-xs-center p-1 text-white">Products</h4>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#productaddmodal">Add record</button>
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.ProductID</td>
+                    <td>@p.Name</td>
+                    <td>@p.Category</td>
+                    <td>$@p.Price.ToString("F2")</td>
+                    <td><button onclick="ShowEditProductModal(@p.ProductID,'@p.Name','@p.Category',@p.Price)"
+                        class="btn btn-success">Edit</button>
+                        <button onclick="ShowDelProductModal(@p.ProductID)" class="btn btn-danger">Del</button>
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+
+    var ProductId;
+   function ShowEditProductModal(productId, name, category, price) {
+
+     ProductId=productId;
+
+        $("#editname").val(name);
+        $("#editcategory").val(category);
+        $("#editprice").val(price);
+//console.log($("#name").val())
+
+        $('#producteditmodal').modal('show');
+
+    }
+    function ShowDelProductModal(productId) {
+        ProductId = productId;
+        $('#productdelmodal').modal('show');
+
+    }
+    function AddNewProduct() {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AddProduct","Product")',
+            data: {
+                name: $("#name").val(),
+                category: $("#category").val(),
+                price: $("#price").val()
+            }
+
+            ,
+            success: function (result) {
+                //alert("Success ,succesfull entry");
+                $('#productaddmodal').modal('hide');
+                location.reload();
+            },
+            error: function (result) {
+                alert("Error ,unsuccesfull entry");
+                $('#productaddmodal').modal('hide');
+            }
+
+        })
+    }
+    function EditProduct() {
+        $.ajax({
+            type: "PUT",
+            url: '@Url.Action("EditProduct","Product")',
+            data: {
+                productID: ProductId,
+                name: $("#editname").val(),
+                category: $("#editcategory").val(),
+                price: $("#editprice").val()
+            }
+            ,
+            success: function (result) {
+                alert("Success ,succesfull update!");
+                $('#producteditmodal').modal('hide');
+            },
+            error: function (result) {
+                alert("Error ,unsuccesfull update");
+                $('#producteditmodal').modal('hide');
+            }
+
+        })
+    }
+ 
+
+    function DelProduct() {
+
+
+
+        $.ajax({
+            type: "DELETE",
+            url: '@Url.Action("DeleteProduct","Product")',
+            data: {
+                productId: ProductId
+            }
+            ,
+            success: function (result) {
+                //  alert("Success ,succesfull delete!");
+                $('#productdelmodal').modal('hide');
+                location.reload();
+            },
+            error: function (result) {
+                alert("Error ,unsuccesfull delete");
+                $('#productdelmodal').modal('hide');
+            }
+
+        })
+    }
+</script>
