@@ -32,7 +32,8 @@ namespace DockerizedCrud
             var password = Configuration["DBPASSWORD"] ?? "mypassword";
             services.AddDbContext<ProductDbContext>(options =>
             options.UseMySql($"server={host};userid=root;pwd={password};"
-            + $"port={port};database=products;"));
+            + $"port={port};database=products;").UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+;
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddTransient<IDBContext, DummyDBContext>();
             services.AddMvc();

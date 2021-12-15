@@ -1,0 +1,578 @@
+﻿<!-- Main
+<a href="~/img/redat-logo-white1.jfif">~/img/redat-logo-white1.jfif</a>Sidebar Container -->
+
+@using static DockerizedCrud.Helper.NavigationIndicatorHelper;
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+
+
+    <!-- Sidebar -->
+    <div class="sidebar mt-5">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel pb-3 mb-3 d-flex">
+            @*<div class="image">
+                    <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">Alexander Pierce</a>
+                </div>*@
+        </div>
+
+        <!-- SidebarSearch For m -->
+        <div class="form-inline m-3">
+            <div class="input-group" data-widget="sidebar-search" style="background-color: #343A40">
+                <input style="background-color: #fff;color:#000" class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button style="background-color: #343A40" class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+                <li class="nav-item">
+                    <a href="/" class="nav-link ">
+                        <i class="nav-icon fa fa-chart-bar"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+
+                </li>
+      
+
+                    <li class="nav-item mt-2">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-user-edit"></i>
+                            <p style="color:#fff">
+                       Inventory
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("Index", "Product")" class="@Url.MakeActiveClass("Product","Index")  nav-link">
+                                    <i class="fas fa-user-injured nav-icon"></i>
+                                    <p>Products</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("Index", "HealthCareProvider")" class="nav-link">
+                                    <i class="fas fa-user-md  nav-icon"></i>
+                                    <p>HCP</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+           
+
+                    <li class="nav-item mt-2">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-exchange-alt"></i>
+                            <p>
+                                Transaction
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                                    <a href="@Url.Action("Index", "SubscriptionPlan")" class="nav-link">
+                                        <i class="fas fa-wallet nav-icon"></i>
+                                        <p>Subscription Plan</p>
+                                    </a>
+                                </li>
+                           
+                         
+
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-hospital-user nav-icon"></i>
+                                        <p>
+                                            Client Transaction
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Index", "PatientTransaction")" class="nav-link">
+                                                <i class="fas  fa-user-injured nav-icon"></i>
+                                                <p>Patient</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+
+                                            <a href="@Url.Action("Index", "HCPTransaction")" class="nav-link">
+                                                <i class="fas fa-user-md  nav-icon"></i>
+                                                <p>HCP</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                         
+                        </ul>
+                    </li>
+               
+           
+
+                    <li class="nav-item mt-2">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-notes-medical"></i>
+                            <p>
+                                Medical Service
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "LaboratoryOrderTechnician")" class="nav-link">
+                                        <i class="fas fa-medkit  nav-icon"></i>
+                                        <p>Lab Order Requests</p>
+                                    </a>
+                                </li>
+                  
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "ImagingOrderTechnologist")" class="nav-link">
+                                        <i class="fas fa-medkit  nav-icon"></i>
+                                        <p>Imaging Order Requests</p>
+                                    </a>
+                                </li>
+                      
+                                <li class="nav-item">
+                                    <a href="@Url.Action("ShowMedicalServiceRequest", "MedicalServiceRequest")" class="nav-link">
+                                        <i class="fas fa-medkit  nav-icon"></i>
+                                        <p> Medical  Requests</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "Appointment")" class="nav-link">
+                                        <i class="fas fa-medkit  nav-icon"></i>
+                                        <p> Appointment</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("ShowLatestAppointment", "Appointment")" class="nav-link">
+                                        <i class="fas fa-medkit  nav-icon"></i>
+                                        <p> Appointment Notifications</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a target="_blank" href="@Url.Action("HCPAssignment", "MedicalServiceRequest",new {isForMultipleSession=false,medicalHistoryMultipleSessionId=0 })" class="nav-link">
+                                        <i class="fas fa-user-md  nav-icon"></i>
+                                        <p> Assign Hcp To Patient</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a target="_blank" href="@Url.Action("FamilyMemberHCPAssignment", "FamilyMemberMedicalServiceRequest",new{ isForMultipleSession=false,medicalHistoryMultipleSessionId=0 })" class="nav-link">
+                                        <i class="fas fa-user-md  nav-icon"></i>
+                                        <p> Assign Hcp To Family Member</p>
+                                    </a>
+                                </li>
+
+                         
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-hospital-user nav-icon"></i>
+                                        <p>
+                                            Client Medical Service
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Index", "PatientMedicalService")" class="nav-link">
+                                                <i class="fas  fa-user-injured  nav-icon"></i>
+                                                <p>Patient</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+
+                                            <a href="@Url.Action("Index", "HCPMedicalService")" class="nav-link">
+                                                <i class="fas fa-user-md  nav-icon"></i>
+                                                <p>HCP</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            
+                        </ul>
+                    </li>
+        
+                    <li class="nav-item mt-2">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-hospital"></i>
+                            <p>
+                                Redat
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                        
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-users nav-icon"></i>
+                                        <p>
+                                            Redat Staff
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Index", "ApplicationUser")" class="nav-link">
+                                                <i class="fas fa-user nav-icon"></i>
+                                                <p>Manage Users</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+
+                                            <a href="@Url.Action("Index", "Role")" class="nav-link">
+                                                <i class="fas fa-user-tag nav-icon"></i>
+                                                <p>Role</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                         
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index", "EthanAccountHistory")" class="nav-link">
+                                        <i class="fas fa-file-invoice-dollar nav-icon"></i>
+                                        <p>
+                                            Redat Account
+
+                                        </p>
+                                    </a>
+
+                                </li>
+                    
+                        </ul>
+                    </li>
+           
+                    <li class="nav-item mt-2">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-cog"></i>
+                            <p>
+                                Setting
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+
+                                <a href="#" class="nav-link">
+                                    <i class="fas fa-hospital-user nav-icon"></i>
+                                    <p>
+                                        Medical Service
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+
+                                <ul class="nav nav-treeview">
+
+                               
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Index", "LaboratoryOrderCategory")" class="nav-link">
+                                                <i class="fas fa-vials  nav-icon"></i>
+                                                <p>Lab Order Category</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Index", "PrescriptionDrug")" class="nav-link">
+                                                <i class="fas fa-pills  nav-icon"></i>
+                                                <p>Prescription Drug</p>
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Index", "ImagingOrder")" class="nav-link">
+                                                <i class="fas fa-x-ray  nav-icon"></i>
+                                                <p>Image Order</p>
+                                            </a>
+                                        </li>
+                              
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Index", "MedicalService")" class="nav-link">
+                                                <i class="fas fa-medkit  nav-icon"></i>
+                                                <p>Medical Service</p>
+                                            </a>
+                                        </li>
+                               <li class="nav-item">
+                                            <a href="@Url.Action("Index", "AllocationTable")" class="nav-link">
+                                                <i class="fas fa-x-ray  nav-icon"></i>
+                                                <p>Allocation Table</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Index", "HCPMinimumBalance")" class="nav-link">
+                                                <i class="fas fa-money-check-alt  nav-icon"></i>
+                                                <p>Hcp Minimum Balance</p>
+                                            </a>
+                                        </li>
+                            
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Index", "MedicalProfession")" class="nav-link">
+                                                <i class="fas fa-x-ray  nav-icon"></i>
+                                                <p>Medical Profession</p>
+                                            </a>
+                                        </li>
+
+
+                                </ul>
+
+
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("Index", "Bank")" class="nav-link">
+                                    <i class="fas fa-money-check nav-icon"></i>
+                                    <p>Banks</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("Index", "RedatProfile")" class="nav-link">
+                                    <i class="fas fa-building  nav-icon"></i>
+                                    <p>Redat Profile</p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+               
+                <li class="nav-item mt-2">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user-circle"></i>
+                        <p>
+                            Profile
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="@Url.Action("EditProfile","ApplicationUser")" class="nav-link">
+                                <i class="fas fa-user-edit  nav-icon"></i>
+                                <p>Edit Profile</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("ChangePassword","ApplicationUser")" class="nav-link">
+                                <i class="fas fa-key  nav-icon"></i>
+                                <p>Change Password</p>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <li class="nav-item mt-3 mb-3">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-file-pdf"></i>
+                        <p>
+                            Report
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>    
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fas fa-file-image nav-icon"></i>
+                                    <p>
+                                        Client Report
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "RepPatient")" class="nav-link">
+                                            <i class="fas fa-hospital-user  nav-icon"></i>
+                                            <p>Patients</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "RepHealthCareProvider")" class="nav-link">
+                                            <i class="fas fa-hospital-user  nav-icon"></i>
+                                            <p>HCPs </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+
+
+                        </ul>
+                
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fas fa-file-image nav-icon"></i>
+                                    <p>
+                                        Notification Report
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "RepSubscriptionPlan")" class="nav-link">
+                                            <i class="fas fa-hospital-user  nav-icon"></i>
+                                            <p>Subscription Plans</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "RepAppointment")" class="nav-link">
+                                            <i class="fas fa-hospital-user  nav-icon"></i>
+                                            <p>Appoitments </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "RepImagingTest")" class="nav-link">
+                                            <i class="fas fa-hospital-user  nav-icon"></i>
+                                            <p>Image Tests </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "RepLaboratoryTest")" class="nav-link">
+                                            <i class="fas fa-hospital-user  nav-icon"></i>
+                                            <p>Laboratory Tests </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+
+
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fas fa-file-image nav-icon"></i>
+                                    <p>
+                                        Financial Report
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "RepUserSubscription")" class="nav-link">
+                                            <i class="fas fa-hospital-user  nav-icon"></i>
+                                            <p>User Subscription</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "RepWalletTransaction")" class="nav-link">
+                                            <i class="fas fa-hospital-user  nav-icon"></i>
+                                            <p>Wallet Transaction</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "RepEthanTransaction")" class="nav-link">
+                                            <i class="fas fa-hospital-user  nav-icon"></i>
+                                            <p>Redat Transaction</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "RepHCPWallet")" class="nav-link">
+                                            <i class="fas fa-hospital-user  nav-icon"></i>
+                                            <p>HCP Wallets</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "RepPatientWallet")" class="nav-link">
+                                            <i class="fas fa-hospital-user  nav-icon"></i>
+                                            <p>Patient Wallets</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+
+
+                        </ul>
+
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fas fa-file-image nav-icon"></i>
+                                    <p>
+                                        System Report
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "RepClientUser")" class="nav-link">
+                                            <i class="fas fa-hospital-user  nav-icon"></i>
+                                            <p>Client Users</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "RepRedatStaffUser")" class="nav-link">
+                                            <i class="fas fa-hospital-user  nav-icon"></i>
+                                            <p>Redat Staff</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fas fa-file-image nav-icon"></i>
+                                    <p>
+                                        Feedback Report
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "RepPatientFeedback")" class="nav-link">
+                                            <i class="fas fa-hospital-user  nav-icon"></i>
+                                            <p>Patient Feedback</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "RepHcpFeedback")" class="nav-link">
+                                            <i class="fas fa-hospital-user  nav-icon"></i>
+                                            <p>Hcp Feedback</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+<style>
+    li.navitem > ul {
+        margin-left: 10px
+    
+
+    }
+    .nav-item .nav-link i, p 
+    {
+        color: #fff
+    }
+</style>

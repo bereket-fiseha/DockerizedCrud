@@ -17,9 +17,10 @@ namespace DockerizedCrud.Controllers
         }
         [HttpGet]
         public IQueryable<Product> Products() { return _context.Products.AsQueryable<Product>(); }
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return View(_context.Products);
         }
 
         [HttpPost]

@@ -1,0 +1,10 @@
+services:
+  redatemr:
+    image: bkapps/dockerizedcrud
+    container_name: dockerizedcrud
+    ports:
+     - "8082:80"
+    volumes:
+    - "C:/Files/Exp/DevOps/data/wwwroot:/app/wwwroot"
+    environment:
+      - stripe_sk_live= somewordpress

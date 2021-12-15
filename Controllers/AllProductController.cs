@@ -1,5 +1,5 @@
 ﻿using DockerizedCrud.Data;
-using DockerizedCrud.Data;
+
 using DockerizedCrud.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;

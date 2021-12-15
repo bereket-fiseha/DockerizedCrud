@@ -6,43 +6,136 @@
     <title>@ViewData["Title"] - DockerizedCrud</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
+       <!--ADMIN LTE -->
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/lib/adminlte/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/lib/adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/lib/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/lib/adminlte/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/lib/adminlte/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/lib/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/lib/adminlte/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/lib/adminlte/plugins/summernote/summernote-bs4.min.css">
+  <link href="~/lib/toast/toastr.css" rel="stylesheet" />
+    <script src="~/lib/toast/toastr.js"></script>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DockerizedCrud</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+ <div class="wrapper">
+        @* <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__wobble" src="~/img/preload-bg-null.png" alt="AdminLTELogo" height="80" width="80">
+        </div> *@
+        <partial name="_NavBar.cshtml" />
+        <partial name="_SideBar.cshtml" />
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+            <main role="main" class="content">
+                <div class="container-fluid">
+
+                    @RenderBody()
+
+                </div>
+
+            </main>
+
+        </div>
+        <!-- /.content-wrapper -->
+        <partial name="_Footer.cshtml" />
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - DockerizedCrud - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+     <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": true,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "2000",
+                "hideDuration": "2000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            //toastr.warning('This is an information notification provided by toastr.');
+            $.ajax({
+            type: "GET",
+            url: "@Url.Action("UnseenNotificationCount","NotifyHub")",
+            async: false,
+
+            cache: false,
+
+            data: {},
+                success: function (result) {
+                    $(".notification-bell").text(result);
+   },
+            error: function (result) {
+               }
+
+        });
+
+
+
+        });
+    </script>
+    <script>
+     
+    <!-- ADMIN LTE -->
+    @*<script src="~/lib/adminlte/plugins/jquery/jquery.min.js"></script>*@
+    <!-- Bootstrap -->
+    <script src="~/lib/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/lib/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/lib/adminlte/dist/js/adminlte.js"></script>
+    </script>
+      <script>
+        
+     
+        $(".active").parentsUntil("ul.flex-column").addClass("menu-open");
+        $('#colapse-icon').on('click', () => {
+        
+            if ($('.redat-logo').hasClass("show-logo")) {
+         
+                $('.redat-logo').removeClass("show-logo");
+                $('.redat-logo').addClass("hide-logo");
+
+            }
+            else if ($('.redat-logo').hasClass("hide-logo")) {
+
+                $('.redat-logo').addClass("show-logo");
+                $('.redat-logo').removeClass("hide-logo");
+
+            }
+        })
+            
+    </script>
 </body>
 </html>

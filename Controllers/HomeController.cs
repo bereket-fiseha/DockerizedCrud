@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using DockerizedCrud.Models;
 using DockerizedCrud.Data;
 using Microsoft.Extensions.Configuration;
-using DockerizedCrud.Data;
+
 
 namespace DockerizedCrud.Controllers {
 public class HomeController : Controller {
