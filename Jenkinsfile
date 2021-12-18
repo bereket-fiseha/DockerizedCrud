@@ -1,9 +1,8 @@
 pipeline {
     agent any
-    triggers {
-        githubPush()
-    }
+
     stages {
+ 
         stage('Restore packages'){
            steps{
                sh 'dotnet restore DockerizedCrud.csproj'
@@ -22,7 +21,7 @@ pipeline {
    
         stage('Publish'){
              steps{
-               sh 'dotnet publish DockerizedCrud.csproj --configuration Release --no-restore'
+               sh 'dotnet publish DockerizedCrud.csproj --configuration Release -o publishfolder --no-restore'
              }
         }
     
