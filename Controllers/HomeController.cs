@@ -20,7 +20,7 @@ message = config["MESSAGE"] ?? "Essential Docker";
 }
         [HttpGet]
         public String getString() {
-            return "hello this i s,change i dont want";
+            return "hello this i s,change i dont want ,2nd change i dont want";
         }
 public IActionResult Index() {
 ViewBag.Message = message;
